@@ -1,0 +1,5 @@
+{
+  "name": "PolicyPal: Health Coverage Assistant",
+  "description": "An AI-powered chat assistant to help HMO enrollees understand their health plan coverage. Users can ask about specific medical procedures, and the assistant will check coverage details based on their plan tier.",
+  "requestFramePermissions": []
+}
