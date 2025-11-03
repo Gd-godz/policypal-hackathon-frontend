@@ -9,13 +9,6 @@
 > “Am I covered for antenatal care?”  
 > “What does my BlueFamily plan include?”
 
----
-
-## Live Demo
-
-Coming soon — will be deployed to Cloud Run and linked here.
-
----
 
 ## Tech Stack
 
