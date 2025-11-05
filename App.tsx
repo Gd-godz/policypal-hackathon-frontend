@@ -5,7 +5,7 @@ import { INITIAL_MESSAGE } from './constants';
 import { runChat, resetChat } from './services/geminiService';
 import ChatMessage from './components/ChatMessage';
 import ChatInput from './components/ChatInput';
-import ProcedureListCard from './components/ProcedureListCard';
+import SuggestionChips from './components/SuggestionChips';
 
 const App: React.FC = () => {
     const [messages, setMessages] = useState<Message[]>(() => {
@@ -112,6 +112,13 @@ const App: React.FC = () => {
                 )}
                 <div ref={chatEndRef} />
             </main>
+            
+            {messages.length === 1 && messages[0].role === Role.ASSISTANT && !isLoading && (
+                <div className="bg-slate-100">
+                    <SuggestionChips onSuggestionClick={handleSendMessage} />
+                </div>
+            )}
+
             <footer className="sticky bottom-0">
                  <ChatInput onSendMessage={handleSendMessage} isLoading={isLoading} />
             </footer>

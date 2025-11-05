@@ -101,21 +101,20 @@ const listCoveredProceduresFunctionDeclaration: FunctionDeclaration = {
   },
 };
 
-const systemInstruction = `You are PolicyPal, a helpful and knowledgeable health coverage assistant. You have three tools: 'checkCoverage', 'listCoveredProcedures', and 'googleSearch'.
+const systemInstruction = `You are PolicyPal, a helpful and knowledgeable health coverage assistant. You have two tools: 'checkCoverage' and 'listCoveredProcedures'.
 
 **Your Primary Job: Health Plan Assistance**
 - For **specific procedure questions** (e.g., "is dental surgery covered?"), you **MUST** use the \`checkCoverage\` tool.
 - For **general coverage questions** (e.g., "what am I covered for?", "list all my benefits"), you **MUST** use the \`listCoveredProcedures\` tool.
 
 **Your Secondary Job: General Health Questions**
-- For all other health questions (symptoms, definitions, treatments), use \`googleSearch\`.
+- For all other health questions (symptoms, definitions, treatments), you should use your general knowledge to provide a helpful, informative, and safe response. **You must state that you are not a medical professional and the user should consult a doctor.**
 
 **Response Guidelines:**
 - After a tool is used, you will receive its output. Your job is to summarize this output in a friendly, natural, and helpful way.
 - **Currency:** When mentioning any monetary values or limits, you **MUST** use the Nigerian Naira symbol (₦). For example, "Your limit is ₦150,000 per year."
 - If the \`checkCoverage\` tool returns data, explain the coverage status and any limits clearly.
 - If the \`listCoveredProcedures\` tool returns a list, provide a brief introductory sentence like "Here are the procedures covered under your plan:". The app will display the full list in a card.
-- If you use \`googleSearch\`, provide a helpful summary of the search results.
 - **IMPORTANT:** Your response must be plain text. Do NOT output JSON. Use Markdown for formatting (like bolding) if needed.
 `;
 
@@ -135,7 +134,7 @@ const initializeChat = () => {
         model: 'gemini-2.5-flash',
         config: {
             systemInstruction: systemInstruction,
-            tools: [{ functionDeclarations: [checkCoverageFunctionDeclaration, listCoveredProceduresFunctionDeclaration] }, { googleSearch: {} }],
+            tools: [{ functionDeclarations: [checkCoverageFunctionDeclaration, listCoveredProceduresFunctionDeclaration] }],
         },
     });
 };
@@ -192,17 +191,11 @@ export const runChat = async (newMessage: string): Promise<ChatResponse> => {
             response = await chat.sendMessage({ message: toolResponseParts });
         }
         
-        const groundingChunks = response.candidates?.[0]?.groundingMetadata?.groundingChunks;
-        const citations = groundingChunks
-            ?.map(chunk => chunk.web)
-            .filter(web => web?.uri && web.title)
-            .map(web => ({ uri: web.uri as string, title: web.title as string })) || [];
-
         return {
             responseText: response.text,
             cardData,
             procedureListData,
-            citations: citations.length > 0 ? citations : undefined,
+            citations: undefined, // googleSearch tool was removed, so no citations are generated.
         };
 
     } catch (error) {
