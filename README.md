@@ -4,7 +4,8 @@
 
 # PolicyPal Frontend
 
-**PolicyPal** is a conversational health coverage assistant built with **Gemini in Google AI Studio** and deployed on **Cloud Run**. It helps users understand their health plan by answering natural language questions like:
+**PolicyPal** is an AI-powered assistant that helps users instantly understand their health insurance coverage. Built with **Google Gemini**, **Cloud Functions**, and **Google Sheets**, it delivers factual, real-time answers about health plan benefits in natural language. Deployed on **Google Cloud Run**, PolicyPal reimagines how people access transparent healthcare information.
+It helps users understand their health plan by answering natural language questions like:
 
 > “Am I covered for antenatal care?”  
 > “What does my BlueFamily plan include?”
@@ -21,7 +22,7 @@
 - **HTML Sanitization**: DOMPurify (to securely render the parsed markdown)
 - **Client-side Storage**: localStorage API (for persisting chat history)
 - **Deployment**: Cloud Run
-- **Backend**: Python API (coming soon)
+- **Backend**: Python API - check the backend repo @ https://github.com/Gd-godz/policypal-hackathon-backend.git
 
 ---
 
@@ -40,3 +41,5 @@
 - Do **not** commit `.env.local` to GitHub — it contains your Gemini API key
 - `.env.local` is already listed in `.gitignore` to prevent accidental uploads
 - Always keep your API keys and secrets private
+
+Related Repo (PolicyPal Backend): https://github.com/Gd-godz/policypal-hackathon-backend.git
