@@ -1,7 +1,7 @@
 <<div align="center">
   <img width="1200" height="475" alt="PolicyPal Banner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
 </div>
-Please note that this project works with a backend which can be viewed at this repository: https://github.com/Gd-godz/policypal-hackathon-backend.git
+**Please note** that this project works with a backend which can be viewed at this repository: https://github.com/Gd-godz/policypal-hackathon-backend.git
 
 # PolicyPal Frontend
 
@@ -12,7 +12,7 @@ It helps users understand their health plan by answering natural language questi
 > “What does my BlueFamily plan include?”
 
 **Tool Schemas used by Gemini**
-1. **checkCoverge tool
+1. **checkCoverge tool**
 
 ```
 {
