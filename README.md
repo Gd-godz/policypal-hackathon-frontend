@@ -1,6 +1,7 @@
 <<div align="center">
   <img width="1200" height="475" alt="PolicyPal Banner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
 </div>
+Please note that this project works with a backend which can be viewed at this repository: https://github.com/Gd-godz/policypal-hackathon-backend.git
 
 # PolicyPal Frontend
 
@@ -10,6 +11,48 @@ It helps users understand their health plan by answering natural language questi
 > “Am I covered for antenatal care?”  
 > “What does my BlueFamily plan include?”
 
+**Tool Schemas used by Gemini**
+1. **checkCoverge tool
+
+```
+{
+  "name": "checkCoverage",
+  "description": "Checks if a specific procedure is covered under a health plan",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "plan": {
+        "type": "string",
+        "description": "The name of the health insurance plan"
+      },
+      "item": {
+        "type": "string",
+        "description": "The procedure or treatment to check"
+      }
+    },
+    "required": ["plan", "item"]
+  }
+}
+```
+
+2. **listCoveredProcedures**
+
+```
+{
+  "name": "listCoveredProcedures",
+  "description": "Lists all procedures covered under a health plan",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "plan": {
+        "type": "string",
+        "description": "The name of the health insurance plan"
+      }
+    },
+    "required": ["plan"]
+  }
+}
+```
 
 ## Tech Stack
 - **Google AI Studio Platform**
